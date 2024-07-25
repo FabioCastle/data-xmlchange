@@ -15,12 +15,19 @@ internal class TextFileStorer(TextFileConfiguration Configuration) : IResultStor
         foreach (var line in Configuration.Lines)
         {
             var values = line.ResultIds
+                .Distinct()
                 .Select(n => results.FirstOrDefault(r => r.Id == n))
                 .Select(r => r == null ? "" : r.Result)
-                .ToList();
+                .ToArray();
 
             var newLine = string.Format(line.FormatString, values);
             builder.AppendLine(newLine);
+        }
+
+        var outputFolder = Path.GetDirectoryName(Path.GetFullPath(Configuration.OutputFile));
+        if (outputFolder != null && !Directory.Exists(outputFolder))
+        {
+            Directory.CreateDirectory(outputFolder);
         }
 
         await File.WriteAllTextAsync(Configuration.OutputFile, builder.ToString(), cancellationToken);
