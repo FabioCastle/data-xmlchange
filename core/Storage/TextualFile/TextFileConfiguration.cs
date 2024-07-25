@@ -3,13 +3,29 @@ namespace Data_XML_Change_Core.Storage.TextualFile;
 /// <summary>
 /// Configuration of the <see cref="TextFileStorer"/> class.
 /// </summary>
-/// <param name="OutputFile">Full path of the output file to be written.</param>
-/// <param name="Lines">Lines to be written in the output file.</param>
-public record TextFileConfiguration(string OutputFile, List<TextLineConfiguration> Lines);
+public class TextFileConfiguration
+{
+    /// <summary>
+    /// Full path of the output file to be written.
+    /// </summary>
+    public string OutputFile { get; set; } = "";
+    /// <summary>
+    /// Lines to be written in the output file.
+    /// </summary>
+    public List<TextLineConfiguration> Lines { get; set; } = [];
+}
 
 /// <summary>
 /// Configuration of a line to be written in the output text file.
 /// </summary>
-/// <param name="FormatString">Format string with optional placeholders. E.g. "String {0} - {1}".</param>
-/// <param name="ResultIds">IDs of the results to be put in the formatted string.</param>
-public record TextLineConfiguration(string FormatString, List<string> ResultIds);
+public record TextLineConfiguration
+{
+    /// <summary>
+    /// Format string with optional placeholders. E.g. "String {0} - {1}".
+    /// </summary>
+    public string FormatString { get; set; } = "";
+    /// <summary>
+    /// IDs of the results to be put in the formatted string.
+    /// </summary>
+    public List<string> ResultIds { get; set; } = [];
+}
