@@ -2,8 +2,10 @@ using Data_XML_Change_App;
 using Data_XML_Change_Core;
 
 var builder = Host.CreateApplicationBuilder(args);
-// builder.
-// builder.Host.UseWindowsService();
+builder.Services.AddWindowsService(options =>
+{
+    options.ServiceName = "Data XML-Change";
+});
 
 builder.Services.AddDataXmlChange(builder.Configuration);
 builder.Services.AddHostedService<DataXmlChangeService>();
