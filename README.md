@@ -53,7 +53,7 @@ The /app/appsettings.json file should be edited for your specific needs:
           "ResultIds": [ "string" ] // ID of the query results to be put in the format string. This array should contain the same number of numbered placeholders in the format string
         }
         ```
-    __NOTE:__ In order to support csv file you should set _OutputFile_ to have .csv extension and include a first line in the _Lines_ array containing the csv header with proper separator character. You should also use the same separator character in all other lines configured this way.
+        __NOTE:__ In order to support csv file you should set _OutputFile_ to have .csv extension and include a first line in the _Lines_ array containing the csv header with proper separator character. You should also use the same separator character in all other lines configured this way.
 
 ## Use cases
 I initially developed this project to have a system able to perform data collection from an MTConnect server. MTConnect is a standard communication protocol to manage industrial equipments and you can use this protocol to collect data in form of XML files. You need to have deep knowledge of the protocol in order to read the produced XML files, and there are few MES systems that are able to integrate XML data. Thus, Data XML-Change could be used to convert such data in an easy-to-integrate textual file containing requested data from a customer. 
@@ -63,6 +63,7 @@ If you clone the repository you will be able to include the _core_ class library
 - _IXmlDataRetriever:_ to download XML data from any source
 - _IXmlDataExtractor:_ to extract data from the downloaded XML data
 - _IResultStorer:_ to store the query results found
+
 The library provides my implementations, but you may add your own to expand the capabilities of the project. For example, you may retrieve XML data from any other data source and store the query results in a database. If you plan on providing your implementations, you should also change _CoreExtensions.cs_ class to inject them into DI container.
 
 ## Future developments
